@@ -165,7 +165,7 @@ class Group_Buying_Loyalty_IDs extends Group_Buying_Controller {
 	private static function save_meta_box( $post_id, $post ) {
 		$member = ( isset( $_POST['gb_loyalty_id'] ) && $_POST['gb_loyalty_id'] != '' ) ? self::get_term_slug() : null;
 		wp_set_object_terms( $post_id, $member, self::TAX );
-		update_post_meta( $post_id, self::META_KEY, $_POST['gb_loyalty_id'] );
+		// update_post_meta( $post_id, self::META_KEY, $_POST['gb_loyalty_id'] );
 	}
 	
 	
