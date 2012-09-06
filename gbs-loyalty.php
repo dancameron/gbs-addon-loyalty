@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Group Buying Addon - Loyalty IDs
-Version: 1
+Version: 1.0.1
 Plugin URI: http://groupbuyingsite.com/marketplace
 Description: Option on Account page to add a loyalty number for a customer.
 Author: Sprout Venture

@@ -53,6 +53,8 @@ class Group_Buying_Loyalty_IDs extends Group_Buying_Controller {
 		// Merchant Report
 		add_filter('set_merchant_voucher_report_data_column', array(get_class(), 'set_deal_purchase_report_data_column'), 10, 1);
 		add_filter('set_merchant_voucher_report_data_records', array(get_class(), 'set_deal_purchase_report_data_records'), 10, 1);
+
+		add_filter( 'gb_get_voucher_code', array( get_class(), 'filter_voucher_code' ), 10, 2 );
 	}
 	
 	public static function init_tax() {
@@ -192,5 +194,13 @@ class Group_Buying_Loyalty_IDs extends Group_Buying_Controller {
 			$new_array[] = array_merge($records,$loyalty);
 		}
 		return $new_array;
+	}
+
+	public function filter_voucher_code( $serial, $voucher_id ) {
+		$voucher = Group_Buying_Voucher::get_instance( $voucher_id );
+		$purchase = $voucher->get_purchase();
+		$user_id = $purchase->get_user();
+		$account_id = Group_Buying_Account::get_account_id_for_user( $user_id );
+		return self::account_loyalty_id( $account_id );
 	}
 }
