@@ -210,6 +210,7 @@ class Group_Buying_Loyalty_IDs extends Group_Buying_Controller {
 		$account_id = Group_Buying_Account::get_account_id_for_user( $user_id );
 		$new_voucher_id = self::account_loyalty_id( $account_id );
 		if ( $new_voucher_id ) {
+			$voucher = Group_Buying_Voucher::get_instance( $voucher_id );
 			$voucher->set_serial_number( $new_voucher_id );
 		}
 	}
